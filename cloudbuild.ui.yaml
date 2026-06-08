@@ -1,0 +1,7 @@
+steps:
+  # Step 1: Build Docker image using Dockerfile.ui
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/jobassist-469114/jobassist-ui', '-f', 'Dockerfile.ui', '.']
+
+images:
+  - 'gcr.io/jobassist-469114/jobassist-ui'

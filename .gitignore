@@ -1,0 +1,50 @@
+# Secrets — never commit these
+credentials.json
+old_credentials.json
+credentials_sheets.json
+openaiapikey.env
+claudeapikey.env
+*.env
+sheet_id.json
+
+# Runtime data — user-specific, generated at runtime
+tokens/
+profiles/
+sheets/
+uploads/
+cover_outputs/
+cover_uploads/
+cv_versions/
+database/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Temp deploy files
+_cloudbuild_temp.yaml
+
+# Debug output
+scan_result.json
+backend_log.txt
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

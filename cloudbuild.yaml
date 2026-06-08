@@ -1,0 +1,50 @@
+steps:
+  # Build API image (NO CACHE)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--no-cache', '-t', 'gcr.io/jobassist-469114/jobassist-api', '-f', 'Dockerfile.api', '.']
+
+  # Push API image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/jobassist-469114/jobassist-api']
+
+  # Deploy API to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run', 'deploy', 'jobassist-api',
+        '--image', 'gcr.io/jobassist-469114/jobassist-api',
+        '--region', 'us-central1',
+        '--platform', 'managed',
+        '--allow-unauthenticated',
+        '--timeout=600s',
+        '--min-instances=1',
+        '--set-env-vars', 'ANTHROPIC_API_KEY=your_key_here,REDIRECT_URI=https://jobassist-api-ua6pbx6pna-uc.a.run.app/oauth2callback,STREAMLIT_URL=https://jobassist-ui-ua6pbx6pna-uc.a.run.app/'
+      ]
+
+  # Build UI image (NO CACHE)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--no-cache', '-t', 'gcr.io/jobassist-469114/jobassist-ui', '-f', 'Dockerfile.ui', '.']
+
+  # Push UI image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/jobassist-469114/jobassist-ui']
+
+  # Deploy UI to Cloud Run (static API URL)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run', 'deploy', 'jobassist-ui',
+        '--image', 'gcr.io/jobassist-469114/jobassist-ui',
+        '--region', 'us-central1',
+        '--platform', 'managed',
+        '--allow-unauthenticated',
+        '--timeout=600s',
+        '--min-instances=1',
+        '--set-env-vars', 'API_BASE=https://jobassist-api-ua6pbx6pna-uc.a.run.app'
+      ]
+
+images:
+  - 'gcr.io/jobassist-469114/jobassist-api'
+  - 'gcr.io/jobassist-469114/jobassist-ui'

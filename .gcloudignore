@@ -1,0 +1,6 @@
+# Use all .gitignore rules, then carve out exceptions for Cloud Build
+#!include:.gitignore
+
+# credentials.json must be in the container image (needed for Google OAuth flow)
+# It is never committed to git, but it IS included in the Cloud Build source tarball
+!credentials.json

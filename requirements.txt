@@ -1,0 +1,38 @@
+# Core framework
+fastapi
+uvicorn[standard]
+
+# Frontend
+streamlit
+streamlit-authenticator
+streamlit-option-menu
+
+# Data handling
+pandas
+
+# HTTP requests and feeds
+requests
+feedparser
+
+# Google APIs
+google-api-python-client
+google-auth
+google-auth-oauthlib
+
+# File handling
+python-multipart
+
+langchain
+langchain-anthropic
+anthropic
+python-dotenv
+langgraph
+pydantic
+pypandoc
+pdf2image
+PyPDF2
+
+python-docx
+docx2pdf
+PyMuPDF
+plotly

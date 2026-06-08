@@ -1,0 +1,8 @@
+[ui]
+hideTopBar = true
+[theme]
+primaryColor = "#FF3366"                # pink from logo
+backgroundColor = "#FFFFFF"             # main background
+secondaryBackgroundColor = "#F8F9FB"    # sidebar / panels
+textColor = "#222222"                   # dark gray/black text
+font = "sans serif"
